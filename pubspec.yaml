@@ -1,0 +1,42 @@
+name: app_core
+description: App Core Package split logic code and ui code.
+version: 1.2.0
+homepage: https://gitlab.com/sugadev/libs/frontend/core-flutter
+
+environment:
+  sdk: '>=2.13.0 <3.0.0'
+  flutter: ">=2.2.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # A powerful Http client for Dart, which supports Interceptors, FormData, Request Cancellation, File Downloading, Timeout etc.
+  dio: ^4.0.0
+
+  # A clean and lightweight loading/toast widget for Flutter, easy to use without context, support iOS、Android and Web
+  flutter_easyloading: ^3.0.0
+
+  # Toast Library for Flutter, Easily create toast messages in single line of code
+  fluttertoast: ^8.0.8
+
+  # Small, easy to use and extensible logger which prints beautiful logs.
+  logger: ^1.0.0
+
+  # A client library for authenticating with a remote service via OAuth2 on behalf of a user, and making authorized HTTP requests with the user's OAuth2 credentials.
+  oauth2: ^2.0.0
+
+  # Flutter plugin for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.
+  shared_preferences: ^2.0.6
+
+  # Lock mechanism to prevent concurrent access to asynchronous code.
+  synchronized: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # An opiniated, community-driven set of lint rules for Dart and Flutter projects. Like pedantic but stricter
+  lint: ^1.6.0
+
+flutter:

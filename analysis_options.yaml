@@ -1,0 +1,24 @@
+include: package:lint/analysis_options_package.yaml
+
+linter:
+  rules:
+    annotate_overrides: true
+    avoid_void_async: true
+    prefer_interpolation_to_compose_strings: true
+    unnecessary_new: true
+    sort_child_properties_last: true
+    unawaited_futures: true
+    await_only_futures: true
+    unnecessary_await_in_return: true
+    sort_pub_dependencies: false
+
+analyzer:
+  errors:
+    annotate_overrides: warning
+    avoid_void_async: error
+    prefer_interpolation_to_compose_strings: warning
+    unnecessary_new: warning
+    sort_child_properties_last: warning
+    unawaited_futures: error
+    await_only_futures: warning
+    unnecessary_await_in_return: warning
