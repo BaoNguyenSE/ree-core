@@ -1,7 +1,7 @@
 name: app_core
 description: App Core Package split logic code and ui code.
 version: 1.2.0
-homepage: https://gitlab.com/sugadev/libs/frontend/core-flutter
+homepage:
 
 environment:
   sdk: '>=2.13.0 <3.0.0'

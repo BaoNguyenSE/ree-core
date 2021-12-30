@@ -7,6 +7,8 @@ import 'package:synchronized/synchronized.dart';
 abstract class BaseViewModel {
   static final _callLock = Lock();
 
+  BuildContext? context;
+
   void initState() {}
 
   void disposeState() {}
@@ -14,29 +16,28 @@ abstract class BaseViewModel {
   dynamic _defaultFailure(dynamic error) => Fluttertoast.showToast(msg: error.toString());
 
   @protected
-  Future<Unit> run(
-    dynamic Function() handler, {
+  Future<Unit> run(dynamic Function() handler, {
     bool showLoading = true,
     dynamic Function()? onSuccess,
     dynamic Function(dynamic error)? onFailure,
   }) async {
     return showLoading
-        ? _callLock.synchronized<Unit>(() => _run(
-              handler,
-              showLoading: showLoading,
-              onSuccess: onSuccess,
-              onFailure: onFailure,
-            ))
+        ? _callLock.synchronized<Unit>(() =>
+        _run(
+          handler,
+          showLoading: showLoading,
+          onSuccess: onSuccess,
+          onFailure: onFailure,
+        ))
         : _run(
-            handler,
-            showLoading: showLoading,
-            onSuccess: onSuccess,
-            onFailure: onFailure,
-          );
+      handler,
+      showLoading: showLoading,
+      onSuccess: onSuccess,
+      onFailure: onFailure,
+    );
   }
 
-  Future<Unit> _run(
-    dynamic Function() handler, {
+  Future<Unit> _run(dynamic Function() handler, {
     bool showLoading = true,
     dynamic Function()? onSuccess,
     dynamic Function(dynamic error)? onFailure,

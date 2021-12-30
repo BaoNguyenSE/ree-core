@@ -18,6 +18,7 @@ abstract class BaseViewState<T extends StatefulWidget, M extends BaseViewModel> 
     super.initState();
     loadArguments();
     _viewModel.initState();
+    _viewModel.context = context;
   }
 
   @override
