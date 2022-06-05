@@ -7,6 +7,9 @@ import 'package:synchronized/synchronized.dart';
 abstract class BaseViewModel {
   static final _callLock = Lock();
 
+  @protected
+  String? loadingTitle;
+
   BuildContext? context;
 
   void initState() {}
@@ -16,28 +19,29 @@ abstract class BaseViewModel {
   dynamic _defaultFailure(dynamic error) => Fluttertoast.showToast(msg: error.toString());
 
   @protected
-  Future<Unit> run(dynamic Function() handler, {
+  Future<Unit> run(
+    dynamic Function() handler, {
     bool showLoading = true,
     dynamic Function()? onSuccess,
     dynamic Function(dynamic error)? onFailure,
   }) async {
     return showLoading
-        ? _callLock.synchronized<Unit>(() =>
-        _run(
-          handler,
-          showLoading: showLoading,
-          onSuccess: onSuccess,
-          onFailure: onFailure,
-        ))
+        ? _callLock.synchronized<Unit>(() => _run(
+              handler,
+              showLoading: showLoading,
+              onSuccess: onSuccess,
+              onFailure: onFailure,
+            ))
         : _run(
-      handler,
-      showLoading: showLoading,
-      onSuccess: onSuccess,
-      onFailure: onFailure,
-    );
+            handler,
+            showLoading: showLoading,
+            onSuccess: onSuccess,
+            onFailure: onFailure,
+          );
   }
 
-  Future<Unit> _run(dynamic Function() handler, {
+  Future<Unit> _run(
+    dynamic Function() handler, {
     bool showLoading = true,
     dynamic Function()? onSuccess,
     dynamic Function(dynamic error)? onFailure,
@@ -45,7 +49,9 @@ abstract class BaseViewModel {
     var success = true;
     try {
       if (showLoading) {
-        await EasyLoading.show(status: "Chờ xíu");
+        await EasyLoading.show(
+          status: loadingTitle?.isEmpty == true ? null : loadingTitle ?? 'Chờ xíu',
+        );
       }
       final result = handler();
       if (result is Future) {
